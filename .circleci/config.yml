@@ -7,8 +7,8 @@ jobs:
     working_directory: ~/wu2018
     steps:
       - checkout
-      - run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-      - run: composer install 
+      - run: composer install
+      - run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer 
       - run: php --ini
 
 
