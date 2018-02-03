@@ -18,7 +18,19 @@ class AI
      */
     public static function getGender($text)
     {
-        return 'Male';
+        $male = array('ครับ', 'ผม', 'กระผม','ตุ๊ด');
+        $female = array('ค่ะ', 'ฉัน', 'ดิฉัน','ทอม');
+
+        for($i=0;$i<3;$i++){
+            if(strpos($text,$male[$i])!== false)
+            {
+                return 'Male';
+            }else if(strpos($text,$female[$i])!== false)
+            {
+                return 'Female';
+            }
+        }
+        return 'Unknown';
     }
 
     /**
@@ -26,6 +38,22 @@ class AI
      */
     public static function getSentiment($text)
     {
+        $good = array('จ้า','555','LOL','จ๊ะ','นะจ๊ะ','อิอิ','เย้ๆ');
+        $rude = array('แม่ง', 'fuck', 'เหี้ย','สัส','ควย','hell','ass','piss','bitch','วะ','อารมณ์เสีย','เศร้า');
+        for($i=0;$i<sizeof($rude);$i++)
+        {
+            if(strpos($text,$rude[$i])!== false)
+            {
+                return 'Negative';
+            }
+        }
+        for($i=0;$i<sizeof($good);$i++)
+        {
+            if(strpos($text,$good[$i])!== false)
+            {
+                return 'Positive'; 
+            }
+        }
         return 'Neutral';
     }
 
@@ -34,7 +62,25 @@ class AI
      */
     public static function getRudeWords($text)
     {
-        return ['แสส'];
+        $r=0;
+        $rude = array('แม่ง', 'fuck', 'เหี้ย','สัส','ควย','hell','ass','piss','bitch');
+        $str = array();
+        for($i=0;$i<sizeof($rude);$i++)
+        {
+            if(strpos($text,$rude[$i])!== false)
+            {
+                $r=1;
+                array_push($str,$rude[$i]);    
+            }
+        }
+        if($r==1)
+        {
+            return $str;
+        }else{
+            return ['Not so Rudes'];
+        }
+
+        
     }
 
     /**
@@ -42,6 +88,25 @@ class AI
      */
     public static function getLanguages($text)
     {
-        return ['TH', 'EN'];
+        $result = [];
+        
+        if(preg_replace('/[^ก-ฮ]/u','',$text)){
+            if(preg_match('/[^a-z]/u',$text)){
+                array_push($result, 'TH','EN');
+            }
+            else
+            {
+                array_push($result, 'TH');
+            }
+        }else if(preg_match('/[^a-z]/u',$text)){
+            if(preg_match('/[^ก-ฮ]/u','',$text)){
+                array_push($result, 'TH','EN');
+            }
+            else
+            {
+                array_push($result, 'TH');
+            }
+        }
+        return $result;
     }
 }
