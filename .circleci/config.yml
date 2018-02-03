@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/php:7.1.5-browsers
     working_directory: ~/wu2018
-   steps:
+    steps:
       - checkout
       - run: curl -sS https://getcomposer.org/installer | php -- --filename=composer
       - run: ./composer install
