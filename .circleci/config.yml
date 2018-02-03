@@ -5,11 +5,11 @@ jobs:
     docker:
       - image: circleci/php:7.1.5-browsers
     working_directory: ~/wu2018
-    steps:
+   steps:
       - checkout
-      - run: composer install
-      - run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer 
-      - run: php --ini
+      - run: curl -sS https://getcomposer.org/installer | php -- --filename=composer
+      - run: ./composer install
+      - run: ./vendor/bin/phpunit
 
 
 # # PHP CircleCI 2.0 configuration file
