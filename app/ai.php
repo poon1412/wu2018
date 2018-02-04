@@ -87,26 +87,24 @@ class AI
      * @return array of languages (TH, EN)
      */
     public static function getLanguages($text)
-    {
-        $result = [];
-        
+    {   
         if(preg_replace('/[^ก-ฮ]/u','',$text)){
             if(preg_match('/[^a-z]/u',$text)){
-                array_push($result, 'TH','EN');
+                return ['TH','EN'];
             }
             else
             {
-                array_push($result, 'TH');
+                return ['TH'];
             }
         }else if(preg_match('/[^a-z]/u',$text)){
             if(preg_match('/[^ก-ฮ]/u','',$text)){
-                array_push($result, 'TH','EN');
+                return ['TH','EN'];
             }
             else
             {
-                array_push($result, 'TH');
+                return ['EN'];
             }
         }
-        return $result;
+        
     }
 }
