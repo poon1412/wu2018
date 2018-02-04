@@ -88,7 +88,7 @@ class AI
      */
     public static function getLanguages($text)
     {   
-        if(preg_replace('/[^ก-ฮ]/u','',$text)){
+        if(preg_match('/[^ก-ฮ]/u','',$text)){
             if(preg_match('/[^a-z]/u',$text)){
                 return ['TH','EN'];
             }
