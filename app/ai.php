@@ -88,16 +88,16 @@ class AI
      */
     public static function getLanguages($text)
     {   
-        if(preg_replace('/[^ก-๛]/u','',$text)){
-            if(preg_replace('/[^a-z]/u',$text)){
+        if(preg_match('/[^ก-๛]/u','',$text)){
+            if(preg_match('/[^a-z]/u',$text)){
                 return ['TH','EN'];
             }
             else
             {
                 return ['TH'];
             }
-        }else if(preg_replace('/[^a-z]/u',$text)){
-            if(preg_replace('/[^ก-๛]/u','',$text)){
+        }else if(preg_match('/[^a-z]/u',$text)){
+            if(preg_match('/[^ก-๛]/u','',$text)){
                 return ['TH','EN'];
             }
             else
